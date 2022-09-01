@@ -60,8 +60,13 @@ class ArCaptcha extends Component {
     window.arcaptcha.execute(this.state.widget_id);
   }
   registerCallback() {
-    if (this.props.callback)
+    if (this.props.callback) {
       window[`arcaptcha_callback_${this.state.id}`] = this.props.callback;
+      console.log(this.props.callback);
+    }
+    if (this.props.rendered_callback)
+      window[`arcaptcha_rendered_callback_${this.state.id}`] =
+        this.props.rendered_callback;
     if (this.props.error_callback)
       window[`arcaptcha_error_callback_${this.state.id}`] =
         this.props.error_callback;
@@ -76,12 +81,15 @@ class ArCaptcha extends Component {
         this.props.chlexpired_callback;
   }
   loadCaptcha() {
-    this.registerCallback()
+    this.registerCallback();
     const widgetId = window.arcaptcha.render(`#${this.state.id}`, {
       "site-key": this.props["site-key"],
       size: this.props.invisible ? "invisible" : "",
       callback: this.props.callback
         ? `arcaptcha_callback_${this.state.id}`
+        : null,
+      rendered_callback: this.props.rendered_callback
+        ? `arcaptcha_rendered_callback_${this.state.id}`
         : null,
       error_callback: this.props.error_callback
         ? `arcaptcha_error_callback_${this.state.id}`

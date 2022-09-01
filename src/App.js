@@ -17,7 +17,8 @@ class App extends Component {
           ref={this.ArRef}
           site-key=""
           callback={this.getToken}
-          reset_callback={this.checkCallback}
+          // reset_callback={this.checkCallback}
+          rendered_callback = {this.checkCallback}
           // expired_callback = {this.checkCallback}
           theme="dark" //it's not required. Default is light
           lang="fa" //it's not required. Default is fa
