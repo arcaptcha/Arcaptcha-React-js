@@ -59,19 +59,45 @@ class ArCaptcha extends Component {
   execute() {
     window.arcaptcha.execute(this.state.widget_id);
   }
-
-  loadCaptcha() {
+  registerCallback() {
     if (this.props.callback)
       window[`arcaptcha_callback_${this.state.id}`] = this.props.callback;
+    if (this.props.error_callback)
+      window[`arcaptcha_error_callback_${this.state.id}`] =
+        this.props.error_callback;
+    if (this.props.reset_callback)
+      window[`arcaptcha_reset_callback_${this.state.id}`] =
+        this.props.reset_callback;
+    if (this.props.expired_callback)
+      window[`arcaptcha_expired_callback_${this.state.id}`] =
+        this.props.expired_callback;
+    if (this.props.chlexpired_callback)
+      window[`arcaptcha_chlexpired_callback_${this.state.id}`] =
+        this.props.chlexpired_callback;
+  }
+  loadCaptcha() {
+    this.registerCallback()
     const widgetId = window.arcaptcha.render(`#${this.state.id}`, {
       "site-key": this.props["site-key"],
       size: this.props.invisible ? "invisible" : "",
       callback: this.props.callback
         ? `arcaptcha_callback_${this.state.id}`
         : null,
+      error_callback: this.props.error_callback
+        ? `arcaptcha_error_callback_${this.state.id}`
+        : null,
+      reset_callback: this.props.reset_callback
+        ? `arcaptcha_reset_callback_${this.state.id}`
+        : null,
+      expired_callback: this.props.expired_callback
+        ? `arcaptcha_expired_callback_${this.state.id}`
+        : null,
+      chlexpired_callback: this.props.chlexpired_callback
+        ? `arcaptcha_chlexpired_callback_${this.state.id}`
+        : null,
       lang: this.props.lang,
       theme: this.props.theme,
-      color:this.props.color
+      color: this.props.color,
     });
     this.setState({ widget_id: widgetId });
   }

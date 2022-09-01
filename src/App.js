@@ -5,12 +5,10 @@ class App extends Component {
     super();
     this.ArRef = React.createRef();
   }
-  setChallenge = (challengeId) => {
-    console.log(challengeId)
-    //do something with your challenge ID.
-  };
   getToken(token) {
-    //console.log(token);
+  }
+  checkCallback(e) {
+    console.log("hi");
   }
   render() {
     return (
@@ -19,11 +17,12 @@ class App extends Component {
           ref={this.ArRef}
           site-key=""
           callback={this.getToken}
+          reset_callback={this.checkCallback}
+          // expired_callback = {this.checkCallback}
           theme="dark" //it's not required. Default is light
-          lang="en" //it's not required. Default is fa
+          lang="fa" //it's not required. Default is fa
           color="pink"
         />
-
       </div>
     );
   }
