@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { ArcaptchaWidget } from "./lib/index";
+
 class App extends Component {
   constructor() {
     super();
@@ -8,7 +9,6 @@ class App extends Component {
   getToken(token) {
   }
   checkCallback(e) {
-    console.log("hi");
   }
   render() {
     return (
