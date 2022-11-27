@@ -15,8 +15,9 @@ class App extends Component {
       <div>
         <ArcaptchaWidget
           ref={this.ArRef}
-          site-key=""
+          site-key="4pmvo77wq2"
           callback={this.getToken}
+          api_url="https://widget.arcaptcha.ir/1/api.js"
           // reset_callback={this.checkCallback}
           rendered_callback = {this.checkCallback}
           // expired_callback = {this.checkCallback}

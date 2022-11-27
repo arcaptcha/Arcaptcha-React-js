@@ -21,10 +21,12 @@ class ArCaptcha extends Component {
     this.setID();
     var my_script = document.head.querySelector("#arcptcha-script");
     let script = my_script || document.createElement("script");
+    script.src = this.props.api_url
+      ? this.props.api_url
+      : `https://widget.arcaptcha.ir/1/api.js`;
+    script.id = "arcptcha-script";
     if (!my_script) {
       window.arcaptchaWidgetLoading = new Promise((resolve, reject) => {
-        script.src = `https://widget.arcaptcha.ir/1/api.js`;
-        script.id = "arcptcha-script";
         script.onload = () => {
           resolve();
           this.initialize();
@@ -62,7 +64,6 @@ class ArCaptcha extends Component {
   registerCallback() {
     if (this.props.callback) {
       window[`arcaptcha_callback_${this.state.id}`] = this.props.callback;
-      console.log(this.props.callback);
     }
     if (this.props.rendered_callback)
       window[`arcaptcha_rendered_callback_${this.state.id}`] =
@@ -87,22 +88,22 @@ class ArCaptcha extends Component {
       size: this.props.invisible ? "invisible" : "",
       callback: this.props.callback
         ? `arcaptcha_callback_${this.state.id}`
-        : null,
+        : false,
       rendered_callback: this.props.rendered_callback
         ? `arcaptcha_rendered_callback_${this.state.id}`
-        : null,
+        : false,
       error_callback: this.props.error_callback
         ? `arcaptcha_error_callback_${this.state.id}`
-        : null,
+        : false,
       reset_callback: this.props.reset_callback
         ? `arcaptcha_reset_callback_${this.state.id}`
-        : null,
+        : false,
       expired_callback: this.props.expired_callback
         ? `arcaptcha_expired_callback_${this.state.id}`
-        : null,
+        : false,
       chlexpired_callback: this.props.chlexpired_callback
         ? `arcaptcha_chlexpired_callback_${this.state.id}`
-        : null,
+        : false,
       lang: this.props.lang,
       theme: this.props.theme,
       color: this.props.color,
