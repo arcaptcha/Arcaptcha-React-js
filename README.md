@@ -53,7 +53,7 @@ class YOUR_COMPONENT_NAME extends Component{
 |    lang    |    string    |  NO  |  fa  | This allows you to choose language by this prop. you can choose 'en' or 'fa' for english and persion language | 
 |    theme    |    string    |  NO  |  light  | This allows you to choose theme for your widget. The themes are light and dark  | 
 | color     | String      | No       | normal | Color of every colored element in widget and challenge.  |
-|api_url| String | No | This allows you to change default widget api. |
+|api_url| String | No | https://widget.arcaptcha.ir/1/api.js | This allows you to change default widget api.|
 |    callback    |    Function    |  NO  |  null  | This function would be called after solving captcha |  
 |    rendered_callback    |    Function    |  NO  |  null  | This function would be called after rendering captcha |  
 |    error_callback    |    Function    |  NO  |  null  | This function would be called after error |  
