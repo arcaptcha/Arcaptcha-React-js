@@ -59,7 +59,7 @@ class ArCaptcha extends Component {
   }
 
   execute() {
-    window.arcaptcha.execute(this.state.widget_id);
+    return window.arcaptcha.execute(this.state.widget_id);
   }
   registerCallback() {
     if (this.props.callback) {
