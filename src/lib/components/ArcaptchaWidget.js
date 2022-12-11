@@ -25,6 +25,8 @@ class ArCaptcha extends Component {
       ? this.props.api_url
       : `https://widget.arcaptcha.ir/1/api.js`;
     script.id = "arcptcha-script";
+    script.async = true;
+    script.defer = true;
     if (!my_script) {
       window.arcaptchaWidgetLoading = new Promise((resolve, reject) => {
         script.onload = () => {
