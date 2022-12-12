@@ -20,7 +20,7 @@ class App extends Component {
           api_url="https://widget.arcaptcha.ir/1/api.js"
           // reset_callback={this.checkCallback}
           rendered_callback = {this.checkCallback}
-          // expired_callback = {this.checkCallback}
+          expired_callback = {this.checkCallback}
           theme="dark" //it's not required. Default is light
           lang="fa" //it's not required. Default is fa
           color="pink"

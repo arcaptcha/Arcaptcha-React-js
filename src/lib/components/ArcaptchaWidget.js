@@ -16,6 +16,22 @@ class ArCaptcha extends Component {
     id: "",
   };
 
+  componentWillUnmount() {
+    let callbacks = [];
+    for (var prop in window)
+      if (
+        prop.includes("arcaptcha_callback_") ||
+        prop.includes("arcaptcha_rendered_callback_") ||
+        prop.includes("arcaptcha_error_callback_") ||
+        prop.includes("arcaptcha_reset_callback_") ||
+        prop.includes("arcaptcha_expired_callback_") ||
+        prop.includes("arcaptcha_chlexpired_callback_")
+      )
+        callbacks.push(prop);
+    callbacks.forEach((arr) => {
+      delete window[arr];
+    });
+  }
   componentDidMount() {
     //Once captcha is mounted intialize ArCaptcha
     this.setID();
@@ -64,9 +80,8 @@ class ArCaptcha extends Component {
     return window.arcaptcha.execute(this.state.widget_id);
   }
   registerCallback() {
-    if (this.props.callback) {
+    if (this.props.callback)
       window[`arcaptcha_callback_${this.state.id}`] = this.props.callback;
-    }
     if (this.props.rendered_callback)
       window[`arcaptcha_rendered_callback_${this.state.id}`] =
         this.props.rendered_callback;
