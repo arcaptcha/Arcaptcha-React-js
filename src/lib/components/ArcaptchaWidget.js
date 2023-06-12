@@ -37,9 +37,10 @@ class ArCaptcha extends Component {
     this.setID();
     var my_script = document.head.querySelector("#arcptcha-script");
     let script = my_script || document.createElement("script");
+    let domain = this.props.domain ? `?${this.props.domain}` : '';
     script.src = this.props.api_url
       ? this.props.api_url
-      : `https://widget.arcaptcha.ir/1/api.js`;
+      : `https://widget.arcaptcha.ir/1/api.js${domain}`;
     script.id = "arcptcha-script";
     script.async = true;
     script.defer = true;

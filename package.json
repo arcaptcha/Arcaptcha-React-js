@@ -1,12 +1,15 @@
 {
   "name": "arcaptcha-react",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "private": false,
   "description": "Arcaptcha react library",
   "author": "Yasaman Haghbin",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "files": [ "dist", "README.md" ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@testing-library/jest-dom": "^5.11.4",
