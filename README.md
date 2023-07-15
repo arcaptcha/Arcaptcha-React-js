@@ -20,8 +20,10 @@ You can install this library via npm with:
 
 The requirement for usage are the site-key prop. The component will automatically include and load the Arcaptcha API library and append it to the body.
 
-```
-import {ArcaptchaWidget}  from 'arcaptcha-react'
+- Basic:
+```javascript
+import React from 'react'
+import { ArcaptchaWidget }  from 'arcaptcha-react'
 
 class YOUR_COMPONENT_NAME extends Component{
   constructor(){
@@ -45,6 +47,79 @@ class YOUR_COMPONENT_NAME extends Component{
     );
   }
 }
+```
+- Invisible:
+
+```javascript
+import React from 'react'
+import { ArcaptchaWidget } from 'arcaptcha-react'
+
+class ArcaptchaReact extends React.Component {
+  constructor () {
+    super()
+    this.ArRef = React.createRef()
+  }
+  onSuccess = token => {
+    //do something with your token.
+  }
+  execute = () => {
+    this.ArRef.current.execute()
+  }
+  reset = () => {
+    this.ArRef.current.resetCaptcha()
+  }
+  render () {
+    return (
+      <div>
+        <ArcaptchaWidget
+          ref={this.ArRef}
+          site-key='YOUR_SITE_KEY'
+          callback={this.onSuccess}
+          invisible={true}
+        />
+        <button type="button" onClick={this.execute}>execute</button>
+        <button type="button" onClick={this.reset}>reset</button>
+      </div>
+    )
+  }
+}
+export default ArcaptchaReact;
+```
+
+- Invisible with promise:
+
+```javascript
+import React from 'react'
+import { ArcaptchaWidget } from 'arcaptcha-react'
+
+class ArcaptchaReact extends React.Component {
+  constructor () {
+    super()
+    this.ArRef = React.createRef()
+  }
+  execute = () => {
+    this.ArRef.current.execute().then((token)=>{
+      console.log(token);
+    })
+  }
+  reset = () => {
+    this.ArRef.current.resetCaptcha()
+  }
+  render () {
+    return (
+      <div>
+        <ArcaptchaWidget
+          ref={this.ArRef}
+          site-key='YOUR_SITE_KEY'
+          invisible={true}
+        />
+        <button type="button" onClick={this.execute}>execute</button>
+        <button type="button" onClick={this.reset}>reset</button>
+      </div>
+    )
+  }
+}
+export default ArcaptchaReact;
 ```
 
 ## Props
