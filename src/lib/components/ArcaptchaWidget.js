@@ -22,6 +22,8 @@ class ArCaptcha extends Component {
       if (
         prop.includes("arcaptcha_callback_") ||
         prop.includes("arcaptcha_rendered_callback_") ||
+        prop.includes("arcaptcha_closed_callback_") ||
+        prop.includes("arcaptcha_opened_callback_") ||
         prop.includes("arcaptcha_error_callback_") ||
         prop.includes("arcaptcha_reset_callback_") ||
         prop.includes("arcaptcha_expired_callback_") ||
@@ -82,18 +84,31 @@ class ArCaptcha extends Component {
   registerCallback() {
     if (this.props.callback)
       window[`arcaptcha_callback_${this.state.id}`] = this.props.callback;
+
     if (this.props.rendered_callback)
       window[`arcaptcha_rendered_callback_${this.state.id}`] =
         this.props.rendered_callback;
+
+    if (this.props.closed_callback)
+      window[`arcaptcha_closed_callback_${this.state.id}`] =
+        this.props.closed_callback;
+
+    if (this.props.opened_callback)
+      window[`arcaptcha_opened_callback_${this.state.id}`] =
+        this.props.opened_callback;
+
     if (this.props.error_callback)
       window[`arcaptcha_error_callback_${this.state.id}`] =
         this.props.error_callback;
+
     if (this.props.reset_callback)
       window[`arcaptcha_reset_callback_${this.state.id}`] =
         this.props.reset_callback;
+
     if (this.props.expired_callback)
       window[`arcaptcha_expired_callback_${this.state.id}`] =
         this.props.expired_callback;
+
     if (this.props.chlexpired_callback)
       window[`arcaptcha_chlexpired_callback_${this.state.id}`] =
         this.props.chlexpired_callback;
@@ -108,6 +123,12 @@ class ArCaptcha extends Component {
         : false,
       rendered_callback: this.props.rendered_callback
         ? `arcaptcha_rendered_callback_${this.state.id}`
+        : false,
+      closed_callback: this.props.closed_callback
+        ? `arcaptcha_closed_callback_${this.state.id}`
+        : false,
+      opened_callback: this.props.opened_callback
+        ? `arcaptcha_opened_callback_${this.state.id}`
         : false,
       error_callback: this.props.error_callback
         ? `arcaptcha_error_callback_${this.state.id}`
@@ -130,6 +151,10 @@ class ArCaptcha extends Component {
 
   resetCaptcha() {
     window.arcaptcha.reset(this.state.widget_id);
+  }
+
+  close() {
+    window.arcaptcha.close(this.state.widget_id);
   }
 
   setID() {
