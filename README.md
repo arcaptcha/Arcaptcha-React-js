@@ -21,66 +21,72 @@ You can install this library via npm with:
 The requirement for usage are the site-key prop. The component will automatically include and load the Arcaptcha API library and append it to the body.
 
 - Basic:
-```javascript
-import React from 'react'
-import { ArcaptchaWidget }  from 'arcaptcha-react'
 
-class YOUR_COMPONENT_NAME extends Component{
-  constructor(){
+```javascript
+import React from "react";
+import { ArcaptchaWidget } from "arcaptcha-react";
+
+class YOUR_COMPONENT_NAME extends Component {
+  constructor() {
     super();
     this.ArRef = React.createRef();
   }
-  getToken = (token)=>{
+  getToken = (token) => {
     //do something with your token.
-  }
+  };
   render() {
     return (
       <div>
-          <ArcaptchaWidget
-              ref={this.ArRef}
-              site-key="YOUR_SITE_KEY"
-              callback={this.getToken}
-              theme='dark' //it's not required. Default is light
-              lang='en' //it's not required. Default is fa
-              />
+        <ArcaptchaWidget
+          ref={this.ArRef}
+          site-key="YOUR_SITE_KEY"
+          callback={this.getToken}
+          theme="dark" //it's not required. Default is light
+          lang="en" //it's not required. Default is fa
+        />
       </div>
     );
   }
 }
 ```
+
 - Invisible:
 
 ```javascript
-import React from 'react'
-import { ArcaptchaWidget } from 'arcaptcha-react'
+import React from "react";
+import { ArcaptchaWidget } from "arcaptcha-react";
 
 class ArcaptchaReact extends React.Component {
-  constructor () {
-    super()
-    this.ArRef = React.createRef()
+  constructor() {
+    super();
+    this.ArRef = React.createRef();
   }
-  onSuccess = token => {
+  onSuccess = (token) => {
     //do something with your token.
-  }
+  };
   execute = () => {
-    this.ArRef.current.execute()
-  }
+    this.ArRef.current.execute();
+  };
   reset = () => {
-    this.ArRef.current.resetCaptcha()
-  }
-  render () {
+    this.ArRef.current.resetCaptcha();
+  };
+  render() {
     return (
       <div>
         <ArcaptchaWidget
           ref={this.ArRef}
-          site-key='YOUR_SITE_KEY'
+          site-key="YOUR_SITE_KEY"
           callback={this.onSuccess}
           invisible={true}
         />
-        <button type="button" onClick={this.execute}>execute</button>
-        <button type="button" onClick={this.reset}>reset</button>
+        <button type="button" onClick={this.execute}>
+          execute
+        </button>
+        <button type="button" onClick={this.reset}>
+          reset
+        </button>
       </div>
-    )
+    );
   }
 }
 export default ArcaptchaReact;
@@ -89,34 +95,38 @@ export default ArcaptchaReact;
 - Invisible with promise:
 
 ```javascript
-import React from 'react'
-import { ArcaptchaWidget } from 'arcaptcha-react'
+import React from "react";
+import { ArcaptchaWidget } from "arcaptcha-react";
 
 class ArcaptchaReact extends React.Component {
-  constructor () {
-    super()
-    this.ArRef = React.createRef()
+  constructor() {
+    super();
+    this.ArRef = React.createRef();
   }
   execute = () => {
-    this.ArRef.current.execute().then((token)=>{
+    this.ArRef.current.execute().then((token) => {
       console.log(token);
-    })
-  }
+    });
+  };
   reset = () => {
-    this.ArRef.current.resetCaptcha()
-  }
-  render () {
+    this.ArRef.current.resetCaptcha();
+  };
+  render() {
     return (
       <div>
         <ArcaptchaWidget
           ref={this.ArRef}
-          site-key='YOUR_SITE_KEY'
+          site-key="YOUR_SITE_KEY"
           invisible={true}
         />
-        <button type="button" onClick={this.execute}>execute</button>
-        <button type="button" onClick={this.reset}>reset</button>
+        <button type="button" onClick={this.execute}>
+          execute
+        </button>
+        <button type="button" onClick={this.reset}>
+          reset
+        </button>
       </div>
-    )
+    );
   }
 }
 export default ArcaptchaReact;
@@ -134,7 +144,9 @@ export default ArcaptchaReact;
 | color               | String      | No       | normal                               | Color of every colored element in widget and challenge.                                                                                                               |
 | api_url             | String      | No       | https://widget.arcaptcha.ir/1/api.js | This allows you to change default widget api.                                                                                                                         |
 | callback            | Function    | NO       | null                                 | This function would be called after solving captcha                                                                                                                   |
-| rendered_callback   | Function    | NO       | null                                 | This function would be called after rendering captcha                                                                                                                 |
+| rendered_callback   | Function    | NO       | null                                 | This function would be called after rendering checkbox                                                                                                                |
+| closed_callback     | Function    | NO       | null                                 | This function would be called after closing captcha challenge                                                                                                         |
+| opened_callback     | Function    | NO       | null                                 | This function would be called after opening captcha challenge                                                                                                         |
 | error_callback      | Function    | NO       | null                                 | This function would be called after error                                                                                                                             |
 | reset_callback      | Function    | NO       | null                                 | This function would be called after reseting captcha                                                                                                                  |
 | expired_callback    | Function    | NO       | null                                 | This function would be called after expiring                                                                                                                          |
@@ -145,4 +157,5 @@ export default ArcaptchaReact;
 | Method         | Description                                                                                                      |
 | -------------- | ---------------------------------------------------------------------------------------------------------------- |
 | execute()      | Programmatically trigger a challenge request. You can use this, to load invisible captcha after trigger a button |
+| close()        | Programmatically trigger a close challenge request. You can use this to close challenge container                |
 | resetCaptcha() | Reset the current challenge                                                                                      |
