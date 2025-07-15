@@ -3,11 +3,11 @@ import React, { Component } from "react";
 class ArCaptcha extends Component {
   constructor(props) {
     super(props);
-    this.setRef = () => {
-      return "arcaptcha";
-    };
-
-    // API Methods
+    this.setRef = (el) => {
+      this.containerRef = el
+    }
+    
+  // API Methods
     this.execute = this.execute.bind(this);
     this.resetCaptcha = this.resetCaptcha.bind(this);
   }
