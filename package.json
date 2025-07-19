@@ -1,26 +1,19 @@
 {
   "name": "arcaptcha-react",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "private": false,
   "description": "Arcaptcha react library",
   "author": "Yasaman Haghbin",
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "types": "types/index.d.ts",
   "files": [
     "dist",
+    "types",
     "README.md"
   ],
   "dependencies": {
-    "@babel/polyfill": "^7.12.1",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.1.0",
-    "@testing-library/user-event": "^14.5.2",
-    "core-js": "^3.39.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-scripts": "5.0.1",
-    "use-state-if-mounted": "^1.0.7",
-    "web-vitals": "^4.2.4"
+    "core-js": "^3.39.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -52,7 +45,8 @@
     "@babel/preset-env": "^7.26.0"
   },
   "peerDependencies": {
-    "react": ">=16.8"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "peerDependenciesMeta": {
     "react": {
