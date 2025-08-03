@@ -132,6 +132,111 @@ class ArcaptchaReact extends React.Component {
 export default ArcaptchaReact;
 ```
 
+- Basic in TypeScript:
+```Typescript
+import React, { Component, createRef } from "react";
+import { ArcaptchaWidget, ArcaptchaWidgetHandle } from "arcaptcha-react";
+
+class ArcaptchaReact extends Component {
+  ArRef = createRef<ArcaptchaWidgetHandle>();
+
+  getToken = (token?: string) => {
+    console.log("Captcha token from callback:", token);
+  };
+
+  render() {
+    return (
+      <div>
+        <h2>Arcaptcha Basic Widget (Class Component)</h2>
+        <ArcaptchaWidget
+          ref={this.ArRef}
+          site-key="YOUR_SITE_KEY"
+          callback={this.getToken}
+          theme="dark" 
+          lang="en" 
+        />
+      </div>
+    );
+  }
+}
+
+export default ArcaptchaReact;
+```
+
+- Invisible in TypeScript:
+```Typescript
+import React, { useRef } from 'react';
+import { ArcaptchaWidget, ArcaptchaWidgetHandle } from 'arcaptcha-react';
+
+const ArcaptchaReact: React.FC = () => {
+  const arcaptchaRef = useRef<ArcaptchaWidgetHandle>(null);
+
+  const handleSuccess = (token?: string) => {
+    console.log('Callback Captcha success:', token);
+  };
+
+  const triggerCaptcha = () => {
+    arcaptchaRef.current?.execute();
+  };
+
+  return (
+    <div>
+      <ArcaptchaWidget
+        ref={arcaptchaRef}
+        site-key="YOUR_SITE_KEY"
+        callback={handleSuccess}
+        invisible={true}
+      />
+      <button onClick={triggerCaptcha}>Trigger Captcha</button>
+    </div>
+  );
+};
+
+export default ArcaptchaReact;
+
+```
+
+- Invisible with promise in TypeScript:
+```TypeScript
+import React, { useRef } from 'react';
+import { ArcaptchaWidget, ArcaptchaWidgetHandle } from 'arcaptcha-react';
+
+const ArcaptchaReact: React.FC = () => {
+  const arcaptchaRef = useRef<ArcaptchaWidgetHandle>(null);
+
+  const execute = async () => {
+    console.log('Execute button clicked');
+    try {
+      const token= await arcaptchaRef.current?.execute();
+      console.log('Arcaptcha_token:', token?.arcaptcha_token);
+      console.log('Site_key:', token?.site_key);
+    } catch (err) {
+      console.error('Error executing captcha:', err);
+    }
+  };
+
+  const reset = () => {
+    console.log('Reset button clicked');
+    arcaptchaRef.current?.resetCaptcha();
+  };
+
+  return (
+    <div>
+      <ArcaptchaWidget
+        ref={arcaptchaRef}
+        site-key="SITE_KEY"
+        invisible={true}
+        theme='dark'
+      />
+      <button onClick={execute}>Execute</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
+};
+
+export default ArcaptchaReact;
+```
+
 ## Props
 
 | Name                | Values/Type | Required | Default                              | Description                                                                                                                                                           |
