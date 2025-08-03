@@ -1,12 +1,14 @@
-// types/index.d.ts ✅
 import * as React from 'react'
 
 export interface ArcaptchaWidgetProps {
   "site-key": string
   size?: 'normal' | 'invisible'
+  domain?: string
+  invisible?: boolean
   theme?: 'light' | 'dark'
   color?: string
   error_print?: 0 | 1
+  api_url?: string
   lang?: 'en' | 'fa'
   callback?: (token?: string) => void
   rendered_callback?: () => void
@@ -20,5 +22,19 @@ export interface ArcaptchaWidgetProps {
   closed_callback?: () => void
 }
 
-export const ArcaptchaWidget: React.ComponentType<ArcaptchaWidgetProps>
+export interface ArcaptchaExecuteResponse {
+  arcaptcha_token: string;
+  site_key: string;
+}
+
+export interface ArcaptchaWidgetHandle {
+  execute: () => Promise<ArcaptchaExecuteResponse>;
+  resetCaptcha: () => void;
+  close?: () => void;
+}
+
+export declare const ArcaptchaWidget: React.ForwardRefExoticComponent<
+  ArcaptchaWidgetProps & React.RefAttributes<ArcaptchaWidgetHandle>
+>;
+
 export default ArcaptchaWidget
